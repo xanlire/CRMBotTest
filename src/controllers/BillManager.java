@@ -9,12 +9,18 @@ import java.util.List;
 import model.entities.*;
 import model.repositories.*;
 
+
 /**
  *
  * @author HP
  */
 public class BillManager {
     private Bill bill;
+//    private IBillStrategy addbillStrategy;
+    
+    public String getBillasString(){
+        return bill.toString().equals("") ? "text" : bill.toString();
+    }
     
     public void createBill(){
         if(bill == null) 
@@ -29,8 +35,13 @@ public class BillManager {
         bill.createBillPosition();
     }
         
-    public void addPositionToBill(String data){
-        bill.addDataToBill(Positions.getInstance().getEntityById(data));
+//    public void addEntityToBill(IBillStrategy strategy, String id){
+//        this.addbillStrategy = strategy;
+//        addbillStrategy.addEntityToBill(id);
+//    }
+    
+    public void addPositionToBill(String id){
+        bill.addDataToBill(Positions.getInstance().getEntityById(id));
     }
     
     public void addVolumeToBill(String id){

@@ -8,8 +8,10 @@ package model.repositories;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import model.entities.Volume;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -17,7 +19,6 @@ import java.util.Map;
  */
 public class Volumes extends Repository<Volume> implements IContainer{
 
-//    private List<Volume> listVolumes = new ArrayList<>();
     private static Volumes instance;
     
     public static Volumes getInstance(){
@@ -46,17 +47,15 @@ public class Volumes extends Repository<Volume> implements IContainer{
         });        
         return map;
     }  
-    
-//    private void setNameList(){
-//        try {
-//            ResultSet rs = DBUtils.getInstance().getConnection().createStatement().executeQuery("select * from volume");
-//            while(rs.next()){
-//                listVolumes.add(new Volume(rs.getString("idVolume"), rs.getString("valueVolume")));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Positions.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        DBUtils.getInstance().closeConnection();
-//    }
+
+    @Override
+    public Map<String, String> getNameListByIdList(List<String> idList) {
+        Map<String, String> map = new HashMap<>();
+        List<Volume> newList = list.stream()
+                .filter(entity -> idList.stream().anyMatch(id -> id.equals(entity.getId())))
+                .collect(Collectors.toList());
+        newList.forEach(volume -> map.put(volume.getId(), volume.getName()));
+        return map;
+    }
     
 }

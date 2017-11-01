@@ -14,6 +14,7 @@ public enum Command {
     ADD_VOLUME,
     CANCEL_POSITION,
     NONE,
+    PRINT_BILL,
     SELL,
     START;
 }

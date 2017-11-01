@@ -25,6 +25,7 @@ public class Manager {
     public Manager(){
         this.inputManager = new InputManager();
         this.viewManager = new ViewManager();
+        this.billManager = new BillManager();
     }
     
     public void run(){
@@ -44,7 +45,7 @@ public class Manager {
         this.sendMessage.setChatId(this.inputManager.getChatId());
         this.sendMessage.setParseMode("markdown");        
         this.sendMessage.setReplyMarkup(this.viewManager.getKeyboard());
-        this.sendMessage.setText("text");
+        this.sendMessage.setText(billManager.getBillasString());
     }
     
     private void commandSwitcher(){
@@ -56,14 +57,21 @@ public class Manager {
                 viewManager.setReplyKeyboard();
                 break;
                 
-            case ADD_POSITION:                
+            case ADD_POSITION:
+                billManager.createBill();
                 viewManager.setInlineKeyboard(Positions.getInstance());
                 nextCommand = Command.ADD_VOLUME;
                 break;
                 
-            case ADD_VOLUME:   
-                viewManager.setInlineKeyboard(Volumes.getInstance());                
+            case ADD_VOLUME: 
+                billManager.addPositionToBill(inputManager.getParsedDataByIndex(0));
+                viewManager.setInlineKeyboard(Volumes.getInstance());                        
+                nextCommand = Command.PRINT_BILL;
                 break;
+                
+            case PRINT_BILL:
+                billManager.addVolumeToBill(inputManager.getParsedDataByIndex(0));                
+
         }        
     }
     

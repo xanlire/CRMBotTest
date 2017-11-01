@@ -5,10 +5,22 @@
  */
 package view;
 
+import model.repositories.Bill;
+
+
+
 /**
  *
  * @author HP
  */
 public class Text {
-    
+    private Bill currentBill;
+
+    public Bill getCurrentBill() {
+        return currentBill;
+    }
+
+    public void setCurrentBill(Bill currentBill) {
+        this.currentBill = currentBill;
+    }
 }

@@ -23,6 +23,7 @@ import model.entities.Entity;
 public abstract class Repository<T extends Entity> {
     
     protected List<T> list = new ArrayList<>();
+    protected List<T> currentList = new ArrayList<>();
 //    protected static Entity instance;
     
 //    protected Entity(){}
@@ -53,7 +54,7 @@ public abstract class Repository<T extends Entity> {
     
     public T getEntityById(String id){
         return list.stream().
-                filter(position -> id.equals(position.getId())).
+                filter(entity -> id.equals(entity.getId())).
                 findFirst().
                 get();
     }

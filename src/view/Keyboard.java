@@ -26,7 +26,7 @@ public class Keyboard {
 
     protected InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
     protected Map<String, String> buttonNames = new HashMap<>();
-    protected final List<String> replyKeyboardList = Arrays.asList("Add Position", "Cancel Position", "Additions");
+    protected final List<String> replyKeyboardList = Arrays.asList("Add Position", "Additions");
     protected ReplyKeyboard kb;
 
     public InlineKeyboardMarkup getInlineKeyboardMarkup(Map<String, String> buttonNames){ 

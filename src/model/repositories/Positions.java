@@ -11,6 +11,7 @@ package model.repositories;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import model.entities.*;
@@ -56,10 +57,17 @@ public class Positions extends Repository<Position> implements IContainer{
         }
     }
     
+    
+    
 //    public Position getEntityById(String id){
 //        return list.stream().
 //                filter(position -> id.equals(position.getId())).
 //                findFirst().
 //                get();
 //    }
+
+    @Override
+    public Map<String, String> getNameListByIdList(List<String> idList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
