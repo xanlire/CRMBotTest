@@ -29,7 +29,7 @@ public class BillPosition {
     public Position getPosition() {
         return position;
     }
-    
+   
     public Volume getVolume() {
         return volume;
     }

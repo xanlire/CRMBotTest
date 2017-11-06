@@ -11,7 +11,7 @@ import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
  *
  * @author HP
  */
-public interface View {
-    public String getText();
-    public ReplyKeyboard getKeyboard();
+public abstract class ITextView implements View{
+    @Override
+    public final ReplyKeyboard getKeyboard(){return null;}
 }

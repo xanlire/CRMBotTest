@@ -22,7 +22,7 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
  *
  * @author HP
  */
-public class Keyboard {
+public class Keyboard{
 
     protected InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
     protected Map<String, String> buttonNames = new HashMap<>();

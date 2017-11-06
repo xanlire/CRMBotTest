@@ -30,7 +30,7 @@ public class Bill {
             list.get(list.size() - 1).setPosition((Position)entity);
         }
         if(entity instanceof Volume){
-            list.get(list.size()).setVolume((Volume)entity);
+            list.get(list.size() - 1).setVolume((Volume)entity);
         }
     }
     

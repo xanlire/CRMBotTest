@@ -13,14 +13,27 @@ import model.repositories.Bill;
  *
  * @author HP
  */
-public class Text {
-    private Bill currentBill;
+public class Text extends ITextView{
 
-    public Bill getCurrentBill() {
-        return currentBill;
+    @Override
+    public String getText() {
+        return "text";
     }
 
-    public void setCurrentBill(Bill currentBill) {
-        this.currentBill = currentBill;
-    }
+    
+    
+//    private View view;
+//
+//    public View getCurrentBill() {
+//        return view;
+//    }
+//
+//    public void setCurrentBill(View view) {
+//        this.view = view;
+//    }
+//
+//    @Override
+//    public String getMessage() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }

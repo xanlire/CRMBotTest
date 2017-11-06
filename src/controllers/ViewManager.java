@@ -5,10 +5,12 @@
  */
 package controllers;
 
+import java.util.function.Supplier;
 import model.repositories.IContainer;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
 import view.Keyboard;
 import view.Text;
+import view.View;
 
 /**
  *
@@ -18,6 +20,16 @@ public class ViewManager {
     private Keyboard keyboard;
     private Text textMessage;
     private ReplyKeyboard currentKeyboard;
+    private View view;
+//    private Supplier view;
+    
+    public void setView(View view){
+        this.view = view;
+    }
+    
+    public View getView(){
+        return view;
+    }
     
     public ViewManager(){
         this.keyboard = new Keyboard();
