@@ -19,7 +19,7 @@ public class BillManager {
 //    private IBillStrategy addbillStrategy;
     
     public String getBillasString(){
-        return bill.toString().equals("") ? "text" : bill.toString();
+        return bill == null || bill.toString().equals("") ? "text" : bill.toString();
     }
     
     public void createBill(){
