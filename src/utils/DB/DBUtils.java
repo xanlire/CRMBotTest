@@ -17,12 +17,10 @@ import utils.PropertiesInitializer;
  * @author HP
  */
 public class DBUtils {
-//    private final String url = "jdbc:mysql://localhost:3306/crmsystem";    
-//    private final String username = "root";
-//    private final String password = "admin";
+
     private Connection connection;
     private static DBUtils instance;
-    private PropertiesInitializer properties;
+    private final PropertiesInitializer properties;
 
     private DBUtils(){
         properties = new PropertiesInitializer("res/DB_config.properties");
@@ -33,7 +31,7 @@ public class DBUtils {
             if(connection == null || connection.isClosed())
                 connect();
         } catch (SQLException ex) {
-//            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connection;
     }
