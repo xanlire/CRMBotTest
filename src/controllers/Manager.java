@@ -12,7 +12,9 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 public class Manager {
     
     private SendMessage sendMessage;
-    private Command currentCommand, nextCommand;
+    private Command previousCommand = Command.NONE, 
+                    currentCommand = Command.NONE,
+                    nextCommand = Command.NONE;
     private InputManager inputManager;
     private ViewManager viewManager;
     private BillManager billManager;
@@ -29,28 +31,27 @@ public class Manager {
     }
     
     public void run(){
-        commandSwitcher();
-        initSendMessage();
+        commandSwitch();
+        updateBill();
+        commandExec();
     }
     
     public SendMessage getSendMessage() {
-//        updateBill(command, inputManager.getData());
-//        commandSwitcher();
-//        initSendMessage();
+    //TODO: create exceptions for empty contollers
+        sendMessage = new SendMessage();
+        sendMessage.setChatId(inputManager.getChatId());
+        sendMessage.setParseMode("markdown");        
+        sendMessage.setReplyMarkup(viewManager.getKeyboard());
+        sendMessage.setText(viewManager.getTextMessage());
         return sendMessage;
     }
     
-    private void initSendMessage(){
-        this.sendMessage = new SendMessage();
-        this.sendMessage.setChatId(this.inputManager.getChatId());
-        this.sendMessage.setParseMode("markdown");        
-        this.sendMessage.setReplyMarkup(this.viewManager.getKeyboard());
-        this.sendMessage.setText(billManager.getBillasString());
+    private void commandSwitch(){
+        if(currentCommand != null) previousCommand = currentCommand;
+        if((currentCommand = inputManager.getCommand()) == Command.NONE) currentCommand = nextCommand;
     }
     
-    private void commandSwitcher(){
-        
-        if ((currentCommand = inputManager.getCommand()) == Command.NONE) currentCommand = nextCommand;
+    private void commandExec(){
         
         switch(currentCommand){
             case START:   
@@ -59,25 +60,32 @@ public class Manager {
                 
             case ADD_POSITION:
                 billManager.createBill();
+                viewManager.setTextMessage("Choose coffee position");
                 viewManager.setInlineKeyboard(Positions.getInstance());
                 nextCommand = Command.ADD_VOLUME;
                 break;
                 
-            case ADD_VOLUME: 
-                billManager.addPositionToBill(inputManager.getParsedDataByIndex(0));
+            case ADD_VOLUME:        
+                viewManager.setTextMessage("Choose volume");
                 viewManager.setInlineKeyboard(Volumes.getInstance());                        
                 nextCommand = Command.PRINT_BILL;
                 break;
                 
             case PRINT_BILL:
-                billManager.addVolumeToBill(inputManager.getParsedDataByIndex(0));                
-
+                viewManager.setTextMessage(billManager.getBillasString());
+                viewManager.setReplyKeyboard();
+                
         }        
     }
     
-    private void updateBill(Command command, String data){
-        billManager.createBill();
-//        billManager.addDataToBill(inputManager.getParsedDataByIndex(0), inputManager.getParsedDataByIndex(1));
+    private void updateBill(){        
+        switch(previousCommand){
+            case ADD_POSITION:
+                billManager.addPositionToBill(inputManager.getFirstParsedData());
+                break;
+            case ADD_VOLUME:
+                billManager.addVolumeToBill(inputManager.getFirstParsedData());            
+        }
         
     }
 }

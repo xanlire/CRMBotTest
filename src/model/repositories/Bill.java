@@ -15,29 +15,20 @@ import model.entities.*;
  */
 public class Bill {
     private final List<BillPosition> list = new ArrayList<>();
-    
-    public Bill(){
-        createBillPosition();
-    }
-
-    public void createBillPosition(){
-        list.add(new BillPosition());        
-    }
-    
-    public void addDataToBill(Entity entity){
         
+    public void addDataToBill(Entity entity){        
         if(entity instanceof Position){
+            list.add(new BillPosition());
             list.get(list.size() - 1).setPosition((Position)entity);
         }
         if(entity instanceof Volume){
-            list.get(list.size()).setVolume((Volume)entity);
+            list.get(list.size() - 1).setVolume((Volume)entity);
         }
     }
     
     public List<BillPosition> getList(){
         return list;
-    }
-            
+    }           
     
     public void insertBill(){
         

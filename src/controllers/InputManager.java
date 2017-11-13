@@ -46,6 +46,10 @@ public class InputManager {
 //    public String getNextArgument(){
 //        return parser.getTokenList().get(parser.getPointer());
 //    }
+    public String getFirstParsedData(){
+        return parser.getTokenList().get(0);
+    }
+    
     public String getParsedDataByIndex(int index){
         return parser.getTokenList().get(index);
     }

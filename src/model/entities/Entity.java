@@ -10,9 +10,11 @@ package model.entities;
  * @author HP
  */
 public class Entity {
+    
     protected final String id;
     protected final String name;
 
+    //?? 
     protected Entity(){
         this.id = "undefined";
         this.name = "undefined";

@@ -8,19 +8,28 @@ package controllers;
 import model.repositories.IContainer;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
 import view.Keyboard;
-import view.Text;
 
 /**
  *
  * @author HP
  */
 public class ViewManager {
+    
     private Keyboard keyboard;
-    private Text textMessage;
+    private String textMessage;
+    //TODO: create this object in Keyboard class
     private ReplyKeyboard currentKeyboard;
     
     public ViewManager(){
         this.keyboard = new Keyboard();
+    }
+
+    public String getTextMessage() {
+        return textMessage;
+    }
+
+    public void setTextMessage(String textMessage) {
+        this.textMessage = textMessage;
     }
     
     public ReplyKeyboard getKeyboard(){
@@ -34,5 +43,6 @@ public class ViewManager {
     public void setInlineKeyboard(IContainer container){
         this.currentKeyboard = keyboard.getInlineKeyboardMarkup(container.getNameList());
     }
+    
     
 }

@@ -21,16 +21,4 @@ public class Position extends Entity{
     public String getidType() {
         return idType;
     }
-
-//    @Override
-//    public String getId() {
-//        return id;
-//    }
-//
-//    @Override
-//    public String getName() {
-//        return name;
-//    }
-    
-    
 }

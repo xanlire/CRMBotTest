@@ -30,11 +30,7 @@ public class BillManager {
     public void clearBill(){
         bill = null;
     }
-    
-    public void createBillPosition(){
-        bill.createBillPosition();
-    }
-        
+            
 //    public void addEntityToBill(IBillStrategy strategy, String id){
 //        this.addbillStrategy = strategy;
 //        addbillStrategy.addEntityToBill(id);
