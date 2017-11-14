@@ -1,26 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.repositories;
-
-
-
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 import model.entities.*;
-import model.repositories.IContainer;
 
-/**
- *
- * @author HP
- */
+
 public class Positions extends Repository<Position> implements IContainer{
 //    List<Position> listPositions = new ArrayList<>();
     private static Positions instance;
@@ -55,17 +42,9 @@ public class Positions extends Repository<Position> implements IContainer{
         } catch (SQLException ex){
             throw new RuntimeException("Error during creation list of Positions: " + ex.getMessage());
         }
-    }
+    }    
     
-    
-    
-//    public Position getEntityById(String id){
-//        return list.stream().
-//                filter(position -> id.equals(position.getId())).
-//                findFirst().
-//                get();
-//    }
-
+    //TODO: implement this method
     @Override
     public Map<String, String> getNameListByIdList(List<String> idList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

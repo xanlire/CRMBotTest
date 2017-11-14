@@ -45,6 +45,6 @@ public class BillPosition {
 
     @Override
     public String toString() {
-        return (position != null ? position.getName() : "") + (volume != null ? volume.getName() : "") + '\n' + cost;                
+            return (position != null ? position.getName() + " " : "") + (volume != null ? volume.getName() + " " : "") + cost;                
     }
 }

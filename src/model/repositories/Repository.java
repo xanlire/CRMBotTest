@@ -39,6 +39,8 @@ public abstract class Repository<T extends Entity> {
 //    
 //    public abstract Map<String, String> getNameList();
     
+    
+    
     public void setNameList(String query, Function<ResultSet, T> fun){
         
         try {

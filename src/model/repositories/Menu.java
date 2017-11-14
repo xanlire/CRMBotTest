@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import model.entities.BillPosition;
 import model.entities.MenuItem;
 
 /**
@@ -52,4 +53,12 @@ public class Menu extends Repository<MenuItem>{
                 .map(item -> item.getIdVolume())
                 .collect(Collectors.toList());                
     }
+    
+//    public float getCost(BillPosition position){
+//        return list.stream().filter(item -> item.getIdPosition().equals(position.getPosition().getId()) &&
+//                item.getIdVolume().equals(position.getVolume().getId()))
+//                .findAny()
+//                .get()
+//                .getCost();
+//    }
 }
