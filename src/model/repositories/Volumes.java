@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.repositories;
 
 import java.sql.ResultSet;
@@ -26,7 +21,7 @@ public class Volumes extends Repository<Volume> implements IContainer{
     }
     
     public Volumes(){
-        super.setNameList("select * from volume", resultSet -> wrapConstructor(resultSet));
+        super.setNameList("select * from volume", resultSet -> wrapConstructor(resultSet));        
     }
     
     private Volume wrapConstructor(ResultSet resultSet){
@@ -40,9 +35,8 @@ public class Volumes extends Repository<Volume> implements IContainer{
     
     @Override
     public Map<String, String> getNameList() {
-//        if (listVolumes.isEmpty()) setNameList();
         Map<String, String> map = new HashMap<>();
-        list.forEach((volume) -> {
+        currentList.forEach((volume) -> {
             map.put(volume.getId(), volume.getName());
         });        
         return map;
@@ -57,5 +51,15 @@ public class Volumes extends Repository<Volume> implements IContainer{
         newList.forEach(volume -> map.put(volume.getId(), volume.getName()));
         return map;
     }
-    
+
+    public void setCurrentListByPosition(String id) {
+        currentList = list;        
+        currentList = list.stream()
+                        .filter(volume -> Menu.getInstance().getCurrentList().stream()
+                            .filter(menuItem -> menuItem.getIdPosition().equals(id))
+                            .map(menuItem -> menuItem.getIdVolume())
+                            .collect(Collectors.toList())
+                            .contains(volume.getId()))
+                        .collect(Collectors.toList());
+    }    
 }

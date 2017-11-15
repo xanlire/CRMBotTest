@@ -9,7 +9,7 @@ import model.entities.*;
 
 
 public class Positions extends Repository<Position> implements IContainer{
-//    List<Position> listPositions = new ArrayList<>();
+
     private static Positions instance;
     
     public static Positions getInstance(){
@@ -22,18 +22,13 @@ public class Positions extends Repository<Position> implements IContainer{
     
     @Override
     public Map<String, String> getNameList() {
-//        if (list.isEmpty()) setNameList();
         Map<String, String> map = new HashMap<>();
-        list.forEach((position) -> {
+        currentList.forEach((position) -> {
             map.put(position.getId(), position.getName());
         });        
         return map;
     }
-    
-//    private void setNameList(){        
-//        super.setNameList("select * from position", resultSet -> wrapConstructor(resultSet));      
-//    }
-    
+        
     private Position wrapConstructor(ResultSet resultSet){
         try{
             return new Position(resultSet.getString("idPosition"), 

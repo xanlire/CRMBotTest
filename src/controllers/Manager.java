@@ -56,6 +56,9 @@ public class Manager {
         switch(currentCommand){
             case START:   
                 viewManager.setReplyKeyboard();
+                viewManager.setTextMessage("Welcome to the Mr. Mokko CRM system.\n"
+                        + "Press 'Add Position' button add new drink to the bill.\n"
+                        + "Every time you want to add new coffee, you should press the button");
                 break;
                 
             case ADD_POSITION:
@@ -67,6 +70,7 @@ public class Manager {
                 
             case ADD_VOLUME:        
                 viewManager.setTextMessage("Choose volume");
+                Volumes.getInstance().setCurrentListByPosition(inputManager.getFirstParsedData());
                 viewManager.setInlineKeyboard(Volumes.getInstance());                        
                 nextCommand = Command.PRINT_BILL;
                 break;
@@ -85,7 +89,6 @@ public class Manager {
                 break;
             case ADD_VOLUME:
                 billManager.addVolumeToBill(inputManager.getFirstParsedData());            
-        }
-        
+        }        
     }
 }

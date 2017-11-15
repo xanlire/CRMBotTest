@@ -53,12 +53,4 @@ public class Menu extends Repository<MenuItem>{
                 .map(item -> item.getIdVolume())
                 .collect(Collectors.toList());                
     }
-    
-//    public float getCost(BillPosition position){
-//        return list.stream().filter(item -> item.getIdPosition().equals(position.getPosition().getId()) &&
-//                item.getIdVolume().equals(position.getVolume().getId()))
-//                .findAny()
-//                .get()
-//                .getCost();
-//    }
 }

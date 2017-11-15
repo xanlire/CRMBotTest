@@ -24,22 +24,6 @@ public abstract class Repository<T extends Entity> {
     
     protected List<T> list = new ArrayList<>();
     protected List<T> currentList = new ArrayList<>();
-//    protected static Entity instance;
-    
-//    protected Entity(){}
-    
-//    public static Entity getI nstance(){
-//        return instance == null ? instance = new Entity() : instance;
-//    }
-//    protected Map<String, String> getNameList(Function<T, String> fun){
-//        Map<String, String> map = new HashMap<>();        
-//        list.forEach((position) -> map.put(fun.app);        
-//        return map;
-//    }
-//    
-//    public abstract Map<String, String> getNameList();
-    
-    
     
     public void setNameList(String query, Function<ResultSet, T> fun){
         
@@ -48,6 +32,7 @@ public abstract class Repository<T extends Entity> {
             while(rs.next()){
                 list.add(fun.apply(rs));
             }
+            currentList = list;
         } catch (SQLException ex) {
             Logger.getLogger(Positions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,5 +44,9 @@ public abstract class Repository<T extends Entity> {
                 filter(entity -> id.equals(entity.getId())).
                 findFirst().
                 get();
+    }
+    
+    public List<T> getCurrentList(){
+        return currentList;
     }
 }
