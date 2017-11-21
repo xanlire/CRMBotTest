@@ -31,10 +31,9 @@ public class BillManager {
         bill = null;
     }
             
-//    public void addEntityToBill(IBillStrategy strategy, String id){
-//        this.addbillStrategy = strategy;
-//        addbillStrategy.addEntityToBill(id);
-//    }
+    public void sell(){
+        bill.saveBill();
+    }
     
     public void addPositionToBill(String id){
         bill.addDataToBill(Positions.getInstance().getEntityById(id));

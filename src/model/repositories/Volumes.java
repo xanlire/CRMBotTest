@@ -62,4 +62,10 @@ public class Volumes extends Repository<Volume> implements IContainer{
                             .contains(volume.getId()))
                         .collect(Collectors.toList());
     }    
+    
+    public List<Volume> getVolumeListForCurrentPosition(List<String> idVolume){
+        return list.stream()
+                .filter(volume -> idVolume.contains(volume.getId()))
+                .collect(Collectors.toList());
+    }
 }

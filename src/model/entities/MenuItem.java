@@ -23,7 +23,7 @@ public class MenuItem extends Entity {
     }
 
     public float getCost() {
-        return cost;
+        return cost;        
     }
     
     public String getIdPosition(){

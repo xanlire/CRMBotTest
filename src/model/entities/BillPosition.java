@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.entities;
 
-/**
- *
- * @author HP
- */
 public class BillPosition {
-    
-//    private String name;
-//    private String volume;
-    
+        
     private Position position;
     private Volume volume;
+    private String idMenu;
+
+    public String getIdMenu() {
+        return idMenu;
+    }
+
+    public void setIdMenu(String idMenu) {
+        this.idMenu = idMenu;
+    }
     private float cost;
 
     public void setPosition(Position position) {
@@ -34,7 +31,6 @@ public class BillPosition {
         return volume;
     }
 
-//    }
     public float getCost() {
         return cost;
     }
@@ -45,6 +41,7 @@ public class BillPosition {
 
     @Override
     public String toString() {
-            return (position != null ? position.getName() + " " : "") + (volume != null ? volume.getName() + " " : "") + cost;                
+            return (position != null ? position.getName() + " " : "") 
+                    + (volume != null ? volume.getName() + " " : "") + cost/100;                
     }
 }

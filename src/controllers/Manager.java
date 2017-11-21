@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
 import model.repositories.*;
@@ -78,7 +73,11 @@ public class Manager {
             case PRINT_BILL:
                 viewManager.setTextMessage(billManager.getBillasString());
                 viewManager.setReplyKeyboard();
-                
+                break;
+            case SELL:
+                billManager.sell();
+                billManager.clearBill();
+                viewManager.setTextMessage("Sold!");
         }        
     }
     

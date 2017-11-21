@@ -39,6 +39,13 @@ public class Menu extends Repository<MenuItem>{
             throw new RuntimeException("Error during creation list of MenuItems: " + ex.getMessage());
         }
     }    
+ 
+    public MenuItem getItemByIds(String idPosition, String idVolume){
+        return list.stream()
+                .filter(x -> x.getIdPosition().equals(idPosition) & x.getIdVolume().equals(idVolume))
+                .findAny()
+                .get();        
+    }
     
     public float getCost(String idPosition, String idVolume){
         Optional<MenuItem> menuItem = list.stream()
@@ -52,5 +59,11 @@ public class Menu extends Repository<MenuItem>{
                 .filter(item -> idPosition.equals(item.getIdPosition()))
                 .map(item -> item.getIdVolume())
                 .collect(Collectors.toList());                
+    }
+    
+    public List<MenuItem> getMenuItemListById(String idPosition){
+        return list.stream()
+                .filter(item -> idPosition.equals(item.getIdPosition()))
+                .collect(Collectors.toList());    
     }
 }

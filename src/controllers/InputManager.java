@@ -55,12 +55,11 @@ public class InputManager {
     }
         
     public Command getCommand(){
-//        Parser parser = new Parser(data);
-//        String parsedCommand = parser.getTokenList().get(0);
-        switch(getParsedDataByIndex(0)){
+        switch(getFirstParsedData()){
             case "start" : return Command.START;
             case "Add": return Command.ADD_POSITION;
-            case "Cancel": return Command.CANCEL_POSITION;        
+            case "Cancel": return Command.CANCEL_POSITION;
+            case "Sell": return Command.SELL;
             default: return Command.NONE;
         }        
     }
