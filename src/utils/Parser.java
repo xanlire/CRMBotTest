@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-/**
- *
- * @author HP
- */
 public class Parser {
     private StringTokenizer tokenizer = null;
     private final String delimeters = " ;/.,";
     private List<String> tokens = new ArrayList<>();
     private int pointer = 0;
+    private boolean slash = false;
     
     public Parser(String message){
         tokenizer = new StringTokenizer(trimSlash(message), delimeters);  
+        getTokens();
     }
     
     private void getTokens(){
@@ -31,14 +24,16 @@ public class Parser {
     
     private String trimSlash(String message){
         if(message.charAt(0) == '/'){
+            slash = true;
             return message.substring(1);
         } else {
             return message;
         }            
     }
     
-    public List<String> getTokenList(){
-        getTokens();
+    public List<String> getTokenList(){        
         return this.tokens;
     }    
+    
+    public boolean isSlash(){return slash;}
 }

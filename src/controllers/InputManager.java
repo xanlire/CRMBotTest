@@ -55,11 +55,15 @@ public class InputManager {
     }
         
     public Command getCommand(){
+        if(parser.isSlash() && Character.isDigit(getFirstParsedData().charAt(0)))
+            return Command.DELETE_POSITION;
         switch(getFirstParsedData()){
             case "start" : return Command.START;
             case "Add": return Command.ADD_POSITION;
             case "Cancel": return Command.CANCEL_POSITION;
             case "Sell": return Command.SELL;
+            case "open": return Command.OPEN;
+            case "close": return Command.CLOSE;            
             default: return Command.NONE;
         }        
     }

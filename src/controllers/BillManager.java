@@ -1,25 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
-import java.util.List;
-import model.entities.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.repositories.*;
 
-
-/**
- *
- * @author HP
- */
 public class BillManager {
     private Bill bill;
-//    private IBillStrategy addbillStrategy;
     
     public String getBillasString(){
-        return bill == null || bill.toString().equals("") ? "text" : bill.toString();
+        return bill == null || bill.toString().equals("") ? "Bill is not created yet" : bill.toString();
     }
     
     public void createBill(){
@@ -35,17 +24,19 @@ public class BillManager {
         bill.saveBill();
     }
     
+    public void deleteByIndex(int index){
+        try{
+            bill.getList().remove(index - 1);
+        }catch(IndexOutOfBoundsException ex){
+            Logger.getLogger(Bill.class.getName()).log(Level.WARNING, ex.getMessage());
+        }
+    }
+    
     public void addPositionToBill(String id){
         bill.addDataToBill(Positions.getInstance().getEntityById(id));
     }
     
     public void addVolumeToBill(String id){
         bill.addDataToBill(Volumes.getInstance().getEntityById(id));
-    }
-    
-//    public List<Volume> getAvailableVolumes(String idPosition){
-//        
-//    }
-    
-    
+    }    
 }

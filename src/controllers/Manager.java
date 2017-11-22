@@ -78,6 +78,15 @@ public class Manager {
                 billManager.sell();
                 billManager.clearBill();
                 viewManager.setTextMessage("Sold!");
+                break;
+            case DELETE_POSITION:
+                billManager.deleteByIndex(Integer.parseInt(inputManager.getFirstParsedData()));
+                viewManager.setTextMessage(billManager.getBillasString());
+                break;
+            case OPEN:
+                break;
+//                billManager.
+                
         }        
     }
     
