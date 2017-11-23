@@ -1,6 +1,7 @@
 package model.repositories;
 
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -42,14 +43,12 @@ public class Bill {
     }           
     
     public void saveBill(){        
-        try {
-            
-//            PreparedStatement insertBill = DBUtils.getInstance()
-//                    .getConnection()
-//                    .prepareStatement("INSERT INTO bill (idUser_User, totalCost) VALUES (?,?)");
-//            insertBill.setInt(1, 1);
-//            insertBill.setInt(2, (int)totalCost * 100);
-//            insertBill.execute();
+        try (Connection connection = DBUtils.getInstance().getConnection()) {            
+            PreparedStatement insertBill = connection
+                    .prepareStatement("INSERT INTO bill (idUser_User, totalCost) VALUES (?,?)");
+            insertBill.setInt(1, 1);
+            insertBill.setInt(2, (int)totalCost * 100);
+            insertBill.execute();
             /*
             *   Default parameter for 'positionBill'.'idBill' is 0.
             *   And it was used database before insert trigger, that selects
@@ -57,11 +56,9 @@ public class Bill {
             *   and sets it to the 'positionBill'.'idBill' column.
             *   That's because passes only one parameter into the INSERT query below.
             */
-            PreparedStatement insertPositionBill = DBUtils.getInstance()
-                    .getConnection()
+            PreparedStatement insertPositionBill = connection
                     .prepareStatement("INSERT INTO positionBill (idMenu) VALUES (?)");
-            for(BillPosition position : list){
-//                insertStatement.setString(1, "1");
+            for(BillPosition position : list){                
                 insertPositionBill.setString(1, position.getIdMenu());
                 insertPositionBill.execute();
             }

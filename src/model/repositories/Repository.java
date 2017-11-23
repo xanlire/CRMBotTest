@@ -1,5 +1,6 @@
 package model.repositories;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,16 +19,15 @@ public abstract class Repository<T extends Entity> {
     
     public void setNameList(String query, Function<ResultSet, T> fun){
         
-        try {
-            ResultSet rs = DBUtils.getInstance().getConnection().createStatement().executeQuery(query);
+        try(Connection connection = DBUtils.getInstance().getConnection()) {
+            ResultSet rs = connection.createStatement().executeQuery(query);
             while(rs.next()){
                 list.add(fun.apply(rs));
             }
             currentList = list;
         } catch (SQLException ex) {
             Logger.getLogger(Positions.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        DBUtils.getInstance().closeConnection();  
+        }        
     }
     
     public T getEntityById(String id){

@@ -42,21 +42,16 @@ public class DBUtils {
         return instance;
     }
     
-    private void connect(){
-          try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+    private void connect() throws SQLException{
+          DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             connection = DriverManager.getConnection(
                     properties.getProperty("url"),
                     properties.getProperty("username"),
                     properties.getProperty("password")); 
-            System.out.println("Connection established succesfull");
-        } catch (SQLException ex) {            
-            Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+            System.out.println("Connection established succesfull");        
     }
     
-    public void closeConnection(){
-        
+    public void closeConnection(){        
         try {
             connection.close();
         } catch (SQLException ex) {
