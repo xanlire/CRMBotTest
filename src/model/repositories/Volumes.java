@@ -8,10 +8,6 @@ import model.entities.Volume;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author HP
- */
 public class Volumes extends Repository<Volume> implements IContainer{
 
     private static Volumes instance;

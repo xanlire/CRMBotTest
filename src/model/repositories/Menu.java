@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.repositories;
 
 import java.sql.ResultSet;
@@ -10,13 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import model.entities.BillPosition;
 import model.entities.MenuItem;
 
-/**
- *  
- * @author HP
- */
 public class Menu extends Repository<MenuItem>{
 
     private static Menu instance;

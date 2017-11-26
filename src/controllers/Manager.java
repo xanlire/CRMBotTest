@@ -10,10 +10,9 @@ public class Manager {
     private Command previousCommand = Command.NONE, 
                     currentCommand = Command.NONE,
                     nextCommand = Command.NONE;
-    private InputManager inputManager;
-    private ViewManager viewManager;
-    private BillManager billManager;
-    private String billAttribute;
+    private final InputManager inputManager;
+    private final ViewManager viewManager;
+    private final BillManager billManager;
 
     public InputManager getInputManager() {
         return inputManager;

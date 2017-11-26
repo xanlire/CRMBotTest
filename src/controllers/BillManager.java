@@ -6,14 +6,20 @@ import model.repositories.*;
 
 public class BillManager {
     private Bill bill;
+    private ZRepository z = new ZRepository();
     
     public String getBillasString(){
         return bill == null || bill.toString().equals("") ? "Bill is not created yet" : bill.toString();
     }
     
     public void createBill(){
-        if(bill == null) 
-            bill = new Bill();
+        if(bill == null){ 
+            if(z.isLarger()){
+                z.createNewZ();
+                z.updateZdate();
+            }
+            bill = new Bill();            
+        }
     }
     
     public void clearBill(){
