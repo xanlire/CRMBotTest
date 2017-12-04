@@ -21,10 +21,10 @@ public class Menu extends Repository<MenuItem>{
     
     private MenuItem wrapConstructor(ResultSet resultSet){
         try{
-            return new MenuItem(resultSet.getString("idMenu"), 
-                    resultSet.getString("idPosition"), 
-                    resultSet.getString("idVolume"), 
-                    resultSet.getFloat("cost"));
+            return new MenuItem(resultSet.getString("id"), 
+                    resultSet.getString("id_position"), 
+                    resultSet.getString("id_volume"), 
+                    resultSet.getInt("cost"));
         } catch (SQLException ex){
             throw new RuntimeException("Error during creation list of MenuItems: " + ex.getMessage());
         }

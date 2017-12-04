@@ -1,7 +1,7 @@
 package model.entities;
 
-public class BillPosition {
-        
+public class BillPosition{        
+
     private Position position;
     private Volume volume;
     private String idMenu;
@@ -41,7 +41,7 @@ public class BillPosition {
 
     @Override
     public String toString() {
-            return (position != null ? position.getName() + " " : "") 
-                    + (volume != null ? volume.getName() + " " : "") + cost/100;                
+            return (position != null ? position.getTitle() + " " : "") 
+                    + (volume != null ? volume.getTitle() + " " : "") + cost/100;                
     }
 }

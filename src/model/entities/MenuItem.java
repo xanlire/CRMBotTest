@@ -4,16 +4,16 @@ public class MenuItem extends Entity {
     
     private final String idPosition;
     private final String idVolume;
-    private final float cost;
+    private final int cost;
 
-    public MenuItem(String id, String idPosition, String idVolume, float cost) {
+    public MenuItem(String id, String idPosition, String idVolume, int cost) {
         super(id);
         this.idPosition = idPosition;
         this.idVolume = idVolume;
         this.cost = cost;
     }
 
-    public float getCost() {
+    public int getCost() {
         return cost;        
     }
     

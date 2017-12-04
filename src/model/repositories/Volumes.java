@@ -22,8 +22,8 @@ public class Volumes extends Repository<Volume> implements IContainer{
     
     private Volume wrapConstructor(ResultSet resultSet){
         try{
-            return new Volume(resultSet.getString("idVolume"), 
-                resultSet.getString("valueVolume"));
+            return new Volume(resultSet.getString("id"), 
+                resultSet.getString("title"));
         } catch (SQLException ex){
             throw new RuntimeException("Error during creation list of Volumes: " + ex.getMessage());
         }            
@@ -33,7 +33,7 @@ public class Volumes extends Repository<Volume> implements IContainer{
     public Map<String, String> getNameList() {
         Map<String, String> map = new HashMap<>();
         currentList.forEach((volume) -> {
-            map.put(volume.getId(), volume.getName());
+            map.put(volume.getId(), volume.getTitle());
         });        
         return map;
     }  
@@ -44,7 +44,7 @@ public class Volumes extends Repository<Volume> implements IContainer{
         List<Volume> newList = list.stream()
                 .filter(entity -> idList.stream().anyMatch(id -> id.equals(entity.getId())))
                 .collect(Collectors.toList());
-        newList.forEach(volume -> map.put(volume.getId(), volume.getName()));
+        newList.forEach(volume -> map.put(volume.getId(), volume.getTitle()));
         return map;
     }
 

@@ -6,7 +6,7 @@ import model.repositories.*;
 
 public class BillManager {
     private Bill bill;
-    private ZRepository z = new ZRepository();
+//    private ZRepository z = new ZRepository();
     
     public String getBillasString(){
         return bill == null || bill.toString().equals("") ? "Bill is not created yet" : bill.toString();
@@ -14,10 +14,6 @@ public class BillManager {
     
     public void createBill(){
         if(bill == null){ 
-            if(z.isLarger()){
-                z.createNewZ();
-                z.updateZdate();
-            }
             bill = new Bill();            
         }
     }

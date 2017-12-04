@@ -1,31 +1,31 @@
 package model.entities;
 
-public class Entity {
+public class Entity{
     
     protected final String id;
-    protected final String name;
+    protected final String title;
 
     //?? 
     protected Entity(){
         this.id = "undefined";
-        this.name = "undefined";
+        this.title = "undefined";
     }
         
     protected Entity(String id){
         this.id = id;
-        this.name = "undefined";
+        this.title = "undefined";
     }    
     
-    protected Entity(String id, String value) {
+    protected Entity(String id, String title) {
         this.id = id;
-        this.name = value;
+        this.title = title;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 }

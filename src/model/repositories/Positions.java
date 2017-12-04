@@ -24,16 +24,16 @@ public class Positions extends Repository<Position> implements IContainer{
     public Map<String, String> getNameList() {
         Map<String, String> map = new HashMap<>();
         currentList.forEach((position) -> {
-            map.put(position.getId(), position.getName());
+            map.put(position.getId(), position.getTitle());
         });        
         return map;
     }
         
     private Position wrapConstructor(ResultSet resultSet){
         try{
-            return new Position(resultSet.getString("idPosition"), 
-                resultSet.getString("namePosition"), 
-                resultSet.getString("idType"));
+            return new Position(resultSet.getString("id"), 
+                resultSet.getString("title"), 
+                resultSet.getString("id_type"));
         } catch (SQLException ex){
             throw new RuntimeException("Error during creation list of Positions: " + ex.getMessage());
         }
