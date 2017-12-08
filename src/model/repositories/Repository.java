@@ -20,7 +20,7 @@ public abstract class Repository<T extends Entity> {
     public void setNameList(String query, Function<ResultSet, T> fun){
         
         try(Connection connection = DBUtils.getInstance().getConnection()) {
-            ResultSet rs = connection.createStatement().executeQuery(query);
+                ResultSet rs = connection.createStatement().executeQuery(query);
             list = new ArrayList<>();
             while(rs.next()){                
                 list.add(fun.apply(rs));

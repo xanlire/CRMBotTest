@@ -4,11 +4,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.repositories.*;
 
+
 public class BillManager {
     private Bill bill;
     
-    private StockRepo stock = StockRepo.getInstance();
-    private Receipts receipts = Receipts.getInstance();
+    private final StockRepo stock = StockRepo.getInstance();
+    private final Receipts receipts = Receipts.getInstance();
 //    private ZRepository z = new ZRepository();
     
     
@@ -28,6 +29,8 @@ public class BillManager {
             
     public void sell(){
         bill.saveBill();
+        stock.reduce(receipts.getIdStockByMenu(bill.getIdMenuList()));
+        stock.update();
     }
     
     public void deleteByIndex(int index){

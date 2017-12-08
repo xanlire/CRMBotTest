@@ -6,8 +6,8 @@ public class Receipt extends Entity{
     private String idStock;
     private int qty;
 
-    public Receipt(String idMenu, String idStock, int qty, String id) {
-        super(id);
+    public Receipt(String idMenu, String idStock, int qty) {
+        super();
         this.idMenu = idMenu;
         this.idStock = idStock;
         this.qty = qty;

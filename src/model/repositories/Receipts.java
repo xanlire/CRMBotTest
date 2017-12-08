@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import model.entities.Receipt;
 
-class Receipts extends Repository<Receipt> {
+public class Receipts extends Repository<Receipt> {
     
     private static Receipts instance;
     
@@ -23,8 +23,7 @@ class Receipts extends Repository<Receipt> {
         try{
             return new Receipt(resultSet.getString("id_menu"), 
                     resultSet.getString("id_stock"),
-                    resultSet.getInt("qty"), 
-                    resultSet.getString("id"));
+                    resultSet.getInt("qty"));
         }catch (SQLException ex){
             throw new RuntimeException("Error during creation receipts list " + ex.getMessage());
         }

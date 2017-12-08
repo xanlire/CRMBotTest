@@ -30,7 +30,7 @@ public class StockRepo extends Repository<Stock>{
         try{
             return new Stock(resultSet.getString("id"),
                     resultSet.getString("title"),
-                    resultSet.getShort("total_qty"));
+                    resultSet.getInt("total_qty"));
         }catch (SQLException ex){
             throw new RuntimeException("Error during creation stock list " + ex.getMessage());
         }
@@ -38,19 +38,21 @@ public class StockRepo extends Repository<Stock>{
     
     public void update(){
         try(Connection connection = DBUtils.getInstance().getConnection()){
-            PreparedStatement updateStatement = connection.prepareStatement("update stock set total_qty = ?, where id = ?");
+            PreparedStatement updateStatement = connection.prepareStatement("update stock set total_qty = ? where id = ?");
             for(Stock stock : list){
-                updateStatement.setInt(0, stock.getTotalQty());
-                updateStatement.setInt(1, Integer.parseInt(stock.getId()));
+                updateStatement.setInt(1, stock.getTotalQty());
+                updateStatement.setInt(2, Integer.parseInt(stock.getId()));
                 updateStatement.execute();
             }            
         } catch(SQLException ex){
-            Logger.getLogger(StockRepo.class.getName()).log(Level.WARNING, ex.getMessage());
+            Logger.getLogger(StockRepo.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
         updateStockCache();
     }
     
     public void reduce(Map<String, Integer> receipt){
-        list.stream().forEach(stock -> stock.setTotalQty(stock.getTotalQty() - receipt.get(stock.getId())));
+        list.stream()
+                .filter(stock -> receipt.containsKey(stock.getId()))
+                .forEach(stock -> stock.setTotalQty(stock.getTotalQty() - receipt.get(stock.getId())));
     }
 }

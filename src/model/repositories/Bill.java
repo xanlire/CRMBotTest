@@ -72,7 +72,7 @@ public class Bill {
             *   That's because passes only one parameter into the INSERT query below.
             */
             PreparedStatement insertPositionBill = connection
-                    .prepareStatement("INSERT INTO menu_bill (idMenu) VALUES (?)");
+                    .prepareStatement("INSERT INTO menu_bill (id_menu) VALUES (?)");
             for(BillPosition position : list){                
                 insertPositionBill.setString(1, position.getIdMenu());
                 insertPositionBill.execute();
