@@ -21,12 +21,13 @@ public abstract class Repository<T extends Entity> {
         
         try(Connection connection = DBUtils.getInstance().getConnection()) {
             ResultSet rs = connection.createStatement().executeQuery(query);
-            while(rs.next()){
+            list = null;
+            while(rs.next()){                
                 list.add(fun.apply(rs));
             }
             currentList = list;
         } catch (SQLException ex) {
-            Logger.getLogger(Positions.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }        
     }
     
