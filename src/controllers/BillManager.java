@@ -6,7 +6,11 @@ import model.repositories.*;
 
 public class BillManager {
     private Bill bill;
+    
+    private StockRepo stock = StockRepo.getInstance();
+    private Receipts receipts = Receipts.getInstance();
 //    private ZRepository z = new ZRepository();
+    
     
     public String getBillasString(){
         return bill == null || bill.toString().equals("") ? "Bill is not created yet" : bill.toString();

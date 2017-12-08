@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.entities.Stock;
@@ -13,7 +14,7 @@ public class StockRepo extends Repository<Stock>{
     
     private static StockRepo instance;
     
-    public StockRepo getInstance(){
+    public static StockRepo getInstance(){
         return instance == null ? instance = new StockRepo() : instance;
     }
     
@@ -47,5 +48,9 @@ public class StockRepo extends Repository<Stock>{
             Logger.getLogger(StockRepo.class.getName()).log(Level.WARNING, ex.getMessage());
         }
         updateStockCache();
+    }
+    
+    public void reduce(Map<String, Integer> receipt){
+        list.stream().forEach(stock -> stock.setTotalQty(stock.getTotalQty() - receipt.get(stock.getId())));
     }
 }

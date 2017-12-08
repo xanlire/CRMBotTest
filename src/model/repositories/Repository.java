@@ -14,14 +14,14 @@ import model.entities.Entity;
 
 public abstract class Repository<T extends Entity> {
     
-    protected List<T> list = new ArrayList<>();
+    protected List<T> list;
     protected List<T> currentList = new ArrayList<>();
     
     public void setNameList(String query, Function<ResultSet, T> fun){
         
         try(Connection connection = DBUtils.getInstance().getConnection()) {
             ResultSet rs = connection.createStatement().executeQuery(query);
-            list = null;
+            list = new ArrayList<>();
             while(rs.next()){                
                 list.add(fun.apply(rs));
             }
@@ -32,10 +32,15 @@ public abstract class Repository<T extends Entity> {
     }
     
     public T getEntityById(String id){
-        return list.stream().
+        try{
+            return list.stream().
                 filter(entity -> id.equals(entity.getId())).
                 findFirst().
                 get();
+        } catch (NullPointerException ex){
+            Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "List might not be created yet", ex);
+        }
+        return null;
     }
     
     public List<T> getCurrentList(){

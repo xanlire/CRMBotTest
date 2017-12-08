@@ -2,10 +2,14 @@ package model.entities;
 
 public class Stock extends Entity{
     
-    private final int totalQty;
+    private int totalQty;
 
     public Stock(String id, String title, int totalQty){
         super(id, title);
+        this.totalQty = totalQty;
+    }
+
+    public void setTotalQty(int totalQty) {
         this.totalQty = totalQty;
     }
     
